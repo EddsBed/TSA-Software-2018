@@ -5,10 +5,11 @@ var config = {
     projectId: "tsa2019-software",
     storageBucket: "tsa2019-software.appspot.com",
     messagingSenderId: "894831766771"
-};
+};//config is of type object
+
 firebase.initializeApp(config);
-//inits database
-var database = firebase.database();
+
+var database = firebase.database();//inits database firebase.database() returns a reference to the database.
 var uid; //user id.
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
