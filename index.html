@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
     <script src="three.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script> <!--connects to the firebase-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!--implements icons and other styling-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> <!--implements fonts-->
     <script src="jquery-3.3.1.min.js"></script>
     <script src="firebase.js"></script>
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
-    <title>Monarch TSA 2019</title>
+    <title>Monarch TSA 2019</title> //name of window
 
 </head>
 <body>
     <div id="topBar">
         <button onfocus="this.blur()" id="listButton" onclick="showList()" class="md-48 material-icons topButton">list</button>
         <button onfocus="this.blur()" id="shapeButton" class="topButton" onclick="shapeMenu()">
+		<!--this creates the actiones for the shape buttonlike greying out if the mouse hovers it-->
+		
             <svg width="40" height="40" viewBox="-0.9 -0.9 1.8 1.8">
                 <g xmlns="http://www.w3.org/2000/svg" style="stroke-width:0.1;stroke-linejoin:round;opacity:1">
                     <polygon fill="#000000" stroke="#FFFFFF" points="-4.9165444345E-17,-0.717341709543 0.704050371456,-0.412727063605 6.3108540578E-17,-0.0217250905725 -0.704050371456,-0.412727063605"></polygon>
                     <polygon fill="#000000" stroke="#FFFFFF" points="6.3108540578E-17,-0.0217250905725 0.704050371456,-0.412727063605 0.629480283571,0.369012729157 5.55894689594E-17,0.811070564442"></polygon>
                     <polygon fill="#000000" stroke="#FFFFFF" points="-0.704050371456,-0.412727063605 6.3108540578E-17,-0.0217250905725 5.55894689594E-17,0.811070564442 -0.629480283571,0.369012729157"></polygon>
-                </g>
+                </g> <!--This section draws the black shapes icon in the top left corner--> 
+		    
             </svg><span id="boxSelected" style="position: absolute;bottom: 2px;right: 2px;">#2</span>
         </button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
@@ -32,18 +36,21 @@
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="settingsButton">settings</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="colorButton" onclick="colorMenu()">color_lens</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="sceneButton" onclick="sceneMenu()">aspect_ratio</button>
+	    <!--this creates the actiones for the buttons like greying out if the mouse hovers it-->
     </div>
 
     <div id="sideBar">
-
+<!--creates the side bar-->
+	    
         <div id="shapeMenu" style="display: none">
             <button onfocus="this.blur()" class="objButton addButton" onclick="newShapeMenu()">New Shape</button>
             <button onfocus="this.blur()" class="objButton removeButton" onclick="removeShape()">Delete Shape</button>
         </div>
-
+   <!--this creates the actiones for the buttons like greying out if the mouse hovers it-->
 
         <div id="addMenu" style="display: none">
             <select id="shapeSelector">
+		    <!--creates a list of options, these options will determine the type of shape.--> 
                 <option value="cube">Cube</option>
                 <option value="cylinder">Cylinder</option>
                 <option value="cone">Cone</option>
@@ -55,12 +62,13 @@
                 <option value="text">Text</option>
                 <option value="ring">Ring</option>
                 <option value="tube">Tube</option>
+		    <!--The format goes as follows option value =/actual text of the option\ >/the id of the test element\-->
             </select>
             <br>
             <button onfocus="this.blur()" class="objButton addButton" onclick="addShape()">OK</button>
             <button onfocus="this.blur()" class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
         </div>
-
+ <!--this creates the actiones for the buttons like greying out if the mouse hovers it-->
 		<div id="sideBarBoxEdit">
             <h3>
                 Dimensions
