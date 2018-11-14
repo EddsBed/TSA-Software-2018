@@ -1,7 +1,14 @@
-function addFrame(){
+/*
+* All of key frame shit
+* write by jordan beware
+ */
+
+
+function createNewFrameObject(){
+    //Jordan's Fist Object
     keyFrames.push(
         {
-            duration: 5000,
+            duration: 5000,//How the
             shapes: getShapes(shapes),
             scales: JSON.parse(JSON.stringify(scales)),
             xPosition: xPosition,
@@ -20,22 +27,57 @@ function addFrame(){
     );
     console.log('frame added');
     console.log(keyFrames);
-    loadKeyList();
+    getObjectList();
 }
 
-function loadKeyList(){
+
+//Setters
+function setKeyName(name, frame){
+    keyFrames[frame].name = name;
+}
+
+function setDuration(frame, duration){
+    console.log(frame);
+    keyFrames[frame].duration = duration;
+}
+
+//Editors
+function removeFrame(frame){
+    keyFrames.splice(frame,1);
+    getObjectList()
+}
+
+function moveUp(frame){
+    var hold = keyFrames[frame];
+    keyFrames.splice(frame,1);
+    keyFrames.splice(frame-1,0,hold);
+    getObjectList();
+}
+
+function moveDown(frame){
+    var hold = keyFrames[frame];
+    keyFrames.splice(frame,1);
+    keyFrames.splice(frame+1,0,hold);
+    getObjectList();
+}
+
+
+
+
+//Getters
+function getObjectList(){
     document.getElementById('keyList').innerHTML = "";
     for(var i=0; i<keyFrames.length-1; i++){
         var add = ""
         if(i!=0){
             add = `<button class="material-icons" onclick="moveUp(`+i+`)">arrow_upward</button>`
         }
-        document.getElementById('keyList').innerHTML+=`<input type="text" value="`+keyFrames[i].name+`" onkeyup="keyName(this.value,`+i+`)" onchange="keyName(this.value,`+i+`)">
+        document.getElementById('keyList').innerHTML+=`<input type="text" value="`+keyFrames[i].name+`" onkeyup="setKeyName(this.value,`+i+`)" onchange="setKeyName(this.value,`+i+`)">
 <button class='material-icons' onclick='removeFrame(`+i+`)'>close</button>
 `+add+`
 <button class="material-icons" onclick="moveDown(`+i+`)">arrow_downward</button>
 <br>
-<input type='number' value='`+keyFrames[i].duration+`' onchange='setSpeed(`+i+`,Number(this.value))' onkeyup='setSpeed(`+i+`,Number(this.value))' style='width: 50px;'>milliseconds
+<input type='number' value='`+keyFrames[i].duration+`' onchange='setDuration(`+i+`,Number(this.value))' onkeyup='setDuration(`+i+`,Number(this.value))' style='width: 50px;'>milliseconds
 <br>`;
     }
 
@@ -44,33 +86,32 @@ function loadKeyList(){
         if(keyFrames.length!=1){
             add = `<button class="material-icons" onclick="moveUp(`+(keyFrames.length - 1)+`)">arrow_upward</button>`
         }
-        document.getElementById('keyList').innerHTML += `<input type="text" value="`+keyFrames[i].name+`" onkeyup="keyName(this.value,`+(keyFrames.length - 1)+`)" onchange="keyName(this.value,`+(keyFrames.length - 1)+`)"><button class='material-icons' onclick='removeFrame(` + (keyFrames.length - 1) + `)'>close</button>
+        document.getElementById('keyList').innerHTML += `<input type="text" value="`+keyFrames[i].name+`" onkeyup="setKeyName(this.value,`+(keyFrames.length - 1)+`)" onchange="setKeyName(this.value,`+(keyFrames.length - 1)+`)"><button class='material-icons' onclick='removeFrame(` + (keyFrames.length - 1) + `)'>close</button>
 `+add+`<br>`;
     }
 }
 
-function keyName(name,frame){
-    keyFrames[frame].name = name;
+//used to store shape data because the library doesn't like us doing stuff.
+function getShapes(shapeArray){
+    var ret = [];
+    for (var i=0; i<shapeArray.length; i++){
+        ret.push(
+            [shapeArray[i].position.x,
+                shapeArray[i].position.y,
+                shapeArray[i].position.z,
+                shapeArray[i].rotation.x,
+                shapeArray[i].rotation.y,
+                shapeArray[i].rotation.z]
+        );
+    }
+    return ret;
 }
 
-function removeFrame(frame){
-    keyFrames.splice(frame,1);
-    loadKeyList()
-}
 
-function moveUp(frame){
-    var hold = keyFrames[frame];
-    keyFrames.splice(frame,1);
-    keyFrames.splice(frame-1,0,hold);
-    loadKeyList();
-}
-function moveDown(frame){
-    var hold = keyFrames[frame];
-    keyFrames.splice(frame,1);
-    keyFrames.splice(frame+1,0,hold);
-    loadKeyList();
-}
 
+
+
+//TODO MAKE NOT HORRIABLE
 function playAnimation() {
     if(!animationRunning) {
         console.log('starting');
@@ -138,20 +179,6 @@ function playAnimation() {
     }
 }
 
-//sets speed of animation.
-function setSpeed(i, speed){
-    console.log(i);
-    keyFrames[i].duration = speed;
-}
-
-//used to store shape data because the library doesn't like us doing stuff.
-function getShapes(s){
-    var ret = [];
-    for (var i=0; i<s.length; i++){
-        ret.push([s[i].position.x,s[i].position.y,s[i].position.z,s[i].rotation.x,s[i].rotation.y,s[i].rotation.z]);
-    }
-    return ret;
-}
 
 //used to store color values because the library doesn't like us doing stuff.
 function getColors(s){

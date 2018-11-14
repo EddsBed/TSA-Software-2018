@@ -116,7 +116,7 @@ function addShapeMenu(){
 function keyMenu(){
     hideAll();
     document.getElementById("keyMenu").style.display="inherit";
-    loadKeyList()
+    getObjectList()
 }
 
 function sceneMenu() {
