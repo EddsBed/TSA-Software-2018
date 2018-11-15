@@ -1,6 +1,6 @@
  //jordan's code
 
-function getRandomColor() {
+function getRandomColor() {//returns a random number in Hex
     var letters = '0123456789ABCDEF';
     var color = '#';
     for (var i = 0; i < 6; i++) {
@@ -8,11 +8,11 @@ function getRandomColor() {
     }
     return color;
 }
-function changeColor(value){
+function changeColor(value){//changes the selected shapes color to value
     shapes[selectedShape].material.color.set(value);
 }
 
-function rgbToHex (num) {
+function rgbToHex (num) {//pretty self explainitory
     var hex = Number(num).toString(16);
     if (hex.length < 2) {
         hex = "0" + hex;
@@ -20,8 +20,9 @@ function rgbToHex (num) {
     return hex;
 };
 
-function addShape(){
+function addShape(){//completely unnecessary, is it even implemented?
     var shapeType = document.getElementById("shapeSelector").value;
+    // if it's literially the same call every time, why??
     switch(shapeType){
         case "cube" :
             addShapeMenu();
@@ -59,14 +60,14 @@ function addShape(){
     }
 }
 
-function createShape(){
+function createShape(){//is this one necessary and/or impletemented 
     var shapeType = document.getElementById("shapeSelector").value;
     var setColor = document.getElementById("colorSet").value;
     var posX = document.getElementById("createPositionX").value;
     var posY = document.getElementById("createPositionY").value;
     var posZ = document.getElementById("createPositionZ").value;
     var borderColor = document.getElementById('createColorBorder').value;
-
+    // if it's literially the same call every time, why??
     switch(shapeType){
         case "cube" :
             newCube(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
