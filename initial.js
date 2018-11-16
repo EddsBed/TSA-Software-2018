@@ -17,7 +17,7 @@ var scales = [];//array for shape scaling
 var keyFrames = [];//array for animation Keyframes
 var borders = [];//array for borders of shape
 
-if(/*localStorage.getItem('keyFrames')==null*/true){
+if(localStorage.getItem('keyFrames')==null){
     newCube(2,2,2,0,0,0,"#00FF00","#000000");
     newCube(3,3,1,0,0,0,"#8000FF","#8000FF");
 }//TODO GET RID OF THIS!!!
@@ -32,9 +32,9 @@ else{
     keyFrames = JSON.parse(localStorage.getItem('keyFrames'));
     scales = JSON.parse(localStorage.getItem('scales'));
     console.log(shapeData);
-    //initLoad();
+    initLoad();
 }
-/*
+
 function initLoad(){
     var type;
     var newGeometry;
@@ -142,5 +142,5 @@ function initLoad(){
         }
     }
 }
-*/
+
 
