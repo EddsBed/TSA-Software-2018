@@ -32,7 +32,7 @@ else{
     console.log(shapeData);
     //initLoad();
 }
-
+/*
 function initLoad(){
     var type;
     var newGeometry;
@@ -139,4 +139,6 @@ function initLoad(){
             selectedShape++;
         }
     }
-    }
+}
+*/
+
