@@ -41,6 +41,12 @@ function initLoad(){
     var borderToAdd;
     const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
     for(var i=0; i<shapeData.length; i++){
+        type = null;
+        newGeometry = null;
+        borderGeometry = null;
+        edges = null;
+        borderToAdd = null;
+        
         type = shapeData[i].type;
         if (type =="TextGeometry") {
             console.log('text');
