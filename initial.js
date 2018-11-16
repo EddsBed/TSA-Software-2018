@@ -30,7 +30,7 @@ else{
     keyFrames = JSON.parse(localStorage.getItem('keyFrames'));
     scales = JSON.parse(localStorage.getItem('scales'));
     console.log(shapeData);
-    initLoad();
+    //initLoad();
 }
 
 function initLoad(){
