@@ -17,7 +17,7 @@ var scales = [];//array for shape scaling
 var keyFrames = [];//array for animation Keyframes
 var borders = [];//array for borders of shape
 
-if(localStorage.getItem('keyFrames')==null){
+if(/*localStorage.getItem('keyFrames')==null*/true){
     newCube(2,2,2,0,0,0,"#00FF00","#000000");
     newCube(3,3,1,0,0,0,"#8000FF","#8000FF");
 }//TODO GET RID OF THIS!!!
