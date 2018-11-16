@@ -1,10 +1,10 @@
 //Materials
 
-var basicMesh = new THREE.MeshBasicMaterial();
+var basicMesh = new THREE.MeshBasicMaterial();//THREE meshes for texturing
 var depthMesh = new THREE.MeshDepthMaterial();
 var rainbowMesh = new THREE.MeshNormalMaterial();
 
-function mesh(meshType) {
+function mesh(meshType) {// changes the shapes material to meshType: basic, depth, or rainbow
     var curColor = shapes[selectedShape].material.color;
     switch (meshType) {
         case "basic":
