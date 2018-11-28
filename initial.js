@@ -1,14 +1,10 @@
 //jordan's code
-var x = 1;
-var y = 1;
-var z = 1;
 var animationRunning = false;
 var animationTimer;
 var selectedShape = -1;
 var scene = new THREE.Scene();
 scene.background = new THREE.Color("#000000");
 var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
-var theta = 0;
 var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
 
 
@@ -20,8 +16,7 @@ var scales = [];
 var keyFrames = [];
 var borders = [];
 if(localStorage.getItem('keyFrames')==null){
-    newCube(2,2,2,0,0,0,"#00FF00","#000000");
-    newCube(3,3,1,0,0,0,"#8000FF","#8000FF");
+    shapeMenu();
 }
 else{
     //shapes = JSON.parse(localStorage.getItem('shapes'));
@@ -113,7 +108,6 @@ else{
             var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
             borders.push(borderToAdd);
             scene.add( borderToAdd );
-
             scene.add(shapes[shapes.length - 1]);
             shapes[selectedShape].position.x = shapeData[i].positionX;
             shapes[selectedShape].position.y = shapeData[i].positionY;
