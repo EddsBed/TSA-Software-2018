@@ -113,7 +113,6 @@ function sceneMenu() {
 
 }
 
-
 function borderVisibility(){
     var checked = document.getElementById("borderVisibility").checked;
     if(checked){
