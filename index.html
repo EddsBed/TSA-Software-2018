@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
     <script src="three.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script> <!--connects to the firebase-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!--implements icons and other styling-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> <!--implements fonts-->
     <script src="jquery-3.3.1.min.js"></script>
     <script src="firebase.js"></script>
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
-    <title>Monarch TSA 2019</title>
+    <title>Monarch TSA 2019</title> //name of window
 
 </head>
 <body>
     <div id="topBar">
         <button onfocus="this.blur()" id="listButton" onclick="showList()" class="md-48 material-icons topButton">list</button>
         <button onfocus="this.blur()" id="shapeButton" class="topButton" onclick="shapeMenu()">
+		<!--this creates the actiones for the shape buttonlike greying out if the mouse hovers it-->
+		
             <svg width="40" height="40" viewBox="-0.9 -0.9 1.8 1.8">
                 <g xmlns="http://www.w3.org/2000/svg" style="stroke-width:0.1;stroke-linejoin:round;opacity:1">
                     <polygon fill="#000000" stroke="#FFFFFF" points="-4.9165444345E-17,-0.717341709543 0.704050371456,-0.412727063605 6.3108540578E-17,-0.0217250905725 -0.704050371456,-0.412727063605"></polygon>
@@ -23,6 +26,7 @@
                     <polygon fill="#000000" stroke="#FFFFFF" points="-0.704050371456,-0.412727063605 6.3108540578E-17,-0.0217250905725 5.55894689594E-17,0.811070564442 -0.629480283571,0.369012729157"></polygon>
                 </g>
             </svg><span id="boxSelected" style="position: absolute;bottom: 2px;right: 2px;">#0</span>
+                <!--This section draws the black shapes icon in the top left corner-->
         </button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="keyButton" onclick="keyMenu()">vpn_key</button>
@@ -32,18 +36,21 @@
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="settingsButton">settings</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="colorButton" onclick="colorMenu()">color_lens</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="sceneButton" onclick="sceneMenu()">aspect_ratio</button>
+	    <!--this creates the actiones for the buttons like greying out if the mouse hovers it-->
     </div>
 
     <div id="sideBar">
-
+<!--creates the side bar-->
+	    
         <div id="shapeMenu" style="display: none">
             <button onfocus="this.blur()" class="objButton addButton" onclick="newShapeMenu()">New Shape</button>
             <button onfocus="this.blur()" class="objButton removeButton" onclick="removeShape()">Delete Shape</button>
         </div>
-
+   <!--this creates the actiones for the buttons like greying out if the mouse hovers it-->
 
         <div id="addMenu" style="display: none">
             <select id="shapeSelector">
+		    <!--creates a list of options, these options will determine the type of shape.--> 
                 <option value="cube">Cube</option>
                 <option value="cylinder">Cylinder</option>
                 <option value="cone">Cone</option>
@@ -55,12 +62,14 @@
                 <option value="text">Text</option>
                 <option value="ring">Ring</option>
                 <option value="tube">Tube</option>
+		    <!--The format goes as follows option value =/actual text of the option\ >/the id of the test element\-->
             </select>
             <br>
             <button onfocus="this.blur()" class="objButton addButton" onclick="addShape()">OK</button>
             <button onfocus="this.blur()" class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
         </div>
-
+ <!--this creates the actiones for the buttons like greying out if the mouse hovers it-->
+	    
 		<div id="sideBarBoxEdit">
             <h3>
                 Dimensions
@@ -68,8 +77,10 @@
             <div class="parameterBox">X: <input type="number" id='dimensionX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="1"><br></div>
             <div class="parameterBox">Y: <input type="number" id='dimensionY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="1"><br></div>
             <div class="parameterBox">Z: <input type="number" id='dimensionZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="1"><br></div>
+			<!--this creates the text box for entering the dimentions of the cube. onchange is a real function that recievs the paramaters given here to change the dimentions of the shape-->
         </div>
 
+	    <!--bellow it is the same thing. each <div class-...> they call the functions that change the shape according to the paramaters-->
         <div id="positionMenu">
             <h3>
                 Position
@@ -92,9 +103,8 @@
             <h3>
                 Color
             </h3>
+		<!--expects a color as an input. value is the staring color and the color of the bos. id is it's id. on change is whatever the new color is--> 
             <input type="color" value="#FF0000" id='colorChanger' onchange="changeColor(this.value)"><br>
-
-
         <div id="sideBarList" style="display:none">
             <h3>
                 Borders
@@ -103,12 +113,37 @@
             <div id="borderMenu">
                 Border Color: <input type="color" id='borderColor' onchange="borderChange(this.value)">
             </div>
+            <div id="listButtons" class="setGroup"></div>
         </div>
 
+        <div id="sideBarCamera" style="display:none">
+		<!--The camera icon to change the position of the camera-->
+		<!--sets up the input feilds for changing the camera position-->
+            <div class="parameterBox">X Position: <input type="number" id='xPositionBox' onchange="xPosition = Number(this.value)" onkeyup="xPosition = Number(this.value)" value="10"><br></div>
+            <div class="parameterBox">Y Position: <input type="number" id='yPositionBox' onchange="yPosition = Number(this.value)" onkeyup="yPosition = Number(this.value)" value="10"><br></div>
+            <div class="parameterBox">Z Position: <input type="number" id='zPositionBox' onchange="zPosition = Number(this.value)" onkeyup="zPosition = Number(this.value)" value="10"><br></div>
+
+        </div>
+
+        <div id="meshMenu">
+            <!-- this doesn't work at all so we need to get it working before we show it all the time-->
+            <!--<h3>
+                Materials
+            </h3>
+            <div class="meshGroup">
+                <button onfocus=this.blur()" onclick="mesh('basic')">Basic</button>
+                <button onfocus=this.blur()" onclick="mesh('depth')">Depth</button>
+                <button onfocus=this.blur()" onclick="mesh('rainbow')">Rainbow</button>
+            </div>-->
+        </div>
+<!--most likeley the new button seen after setting the paramters in order to create a new shape-->
         <div id="createShape" style="display:none">
+		
             <h3>
                 Dimensions
+		 
             </h3>
+		   <!--This sets up the menu to input the information needed to create a new shape-->
             <div class="parameterBox">X: <input type="number" id='createParameterX' onchange="createX = Number(this.value)" onkeyup="createX = Number(this.value)" value="0"><br></div>
             <div class="parameterBox">Y: <input type="number" id='createParameterY' onchange="createY = Number(this.value)" onkeyup="createY = Number(this.value)" value="0"><br></div>
             <div class="parameterBox">Z: <input type="number" id='createParameterZ' onchange="createZ = Number(this.value)" onkeyup="createZ = Number(this.value)" value="0"><br></div>
@@ -120,7 +155,7 @@
             <div class="parameterBox">X: <input type="number" id='createPositionX' value="0"><br></div>
             <div class="parameterBox">Y: <input type="number" id='createPositionY' value="0"><br></div>
             <div class="parameterBox">Z: <input type="number" id='createPositionZ' value="0"><br></div>
-
+                     
             <h3>
                 Color
             </h3>
@@ -159,14 +194,17 @@
                 <button onfocus=this.blur()" onclick="mesh('rainbow')">Rainbow</button>
             </div>-->
         </div>
-
+<!--ends the shape creation input menu-->
+	    
         <div id="keyMenu">
             <button onfocus="this.blur()" class="material-icons" onclick="playAnimation()">play_arrow</button>
-            <button onfocus="this.blur()" class="objButton addButton"onclick="addFrame()">Add Keyframe</button>
+            <button onfocus="this.blur()" class="objButton addButton"onclick="createNewFrameObject()">Add Keyframe</button>
             <div id="keyList"></div>
+		<!--creates the menu when key is pressed-->
         </div>
 
         <div id="sceneMenu" style="display: none">
+		<!--appears when the scene button which is the last button in the top is pressed-->
             <h3>
                 Scale
             </h3>
@@ -216,5 +254,6 @@
     <script src="Shapes/tube.js"></script>
     <script src="initial.js"></script>
     <script src="animate.js"></script>
+	<!--loads all of the scripts and parts of the program that we have-->
 </body>
 </html>

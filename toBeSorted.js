@@ -17,6 +17,8 @@ var xPosStart = xPosition;//the cameras start position x
 var yPosStart = yPosition;//the cameras start position y
 //no x?
 var mouseDown = false;
+
+//the following functions allow us to drag the view with the mouse.
 $(document).on('mousedown',function(e){
     if(e.pageX>=300 && e.pageY >=50) {
         xStart = e.pageX;

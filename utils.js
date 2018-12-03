@@ -1,9 +1,18 @@
  //jordan's code
-function changeColor(value){
+
+function getRandomColor() {//returns a random number in Hex
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+function changeColor(value){//changes the selected shapes color to value
     shapes[selectedShape].material.color.set(value);
 }
 
-function rgbToHex (num) {
+function rgbToHex (num) {//pretty self explainitory
     var hex = Number(num).toString(16);
     if (hex.length < 2) {
         hex = "0" + hex;
@@ -11,26 +20,55 @@ function rgbToHex (num) {
     return hex;
 };
 
-function addShape(){
-    document.getElementById('createText').style.display = 'none';
+
+function addShape(){//completely unnecessary, is it even implemented?
     var shapeType = document.getElementById("shapeSelector").value;
-    addShapeMenu();
-    if(shapeType=='text'){
-        document.getElementById('createText').style.display = 'inherit';
+    // if it's literially the same call every time, why??
+    switch(shapeType){
+        case "cube" :
+            addShapeMenu();
+            break;
+        case "cylinder" :
+            addShapeMenu();
+            break;
+        case "cone" :
+            addShapeMenu();
+            break;
+        case "dodecahedron" :
+            addShapeMenu();
+            break;
+        case "icosahedron" :
+            addShapeMenu();
+            break;
+        case "octahedron" :
+            addShapeMenu();
+            break;
+        case "pyramid" :
+            addShapeMenu();
+            break;
+        case "ring" :
+            addShapeMenu();
+            break;
+        case "sphere" :
+            addShapeMenu();
+            break;
+        case "text" :
+            addShapeMenu();
+            break;
+        case "tube" :
+            addShapeMenu();
+            break;
     }
 }
 
-function createShape(){
+function createShape(){//is this one necessary and/or impletemented 
     var shapeType = document.getElementById("shapeSelector").value;
     var setColor = document.getElementById("colorSet").value;
     var posX = document.getElementById("createPositionX").value;
     var posY = document.getElementById("createPositionY").value;
     var posZ = document.getElementById("createPositionZ").value;
     var borderColor = document.getElementById('createColorBorder').value;
-    var createX = document.getElementById('createParameterX').value;
-    var createY = document.getElementById('createParameterY').value;
-    var createZ = document.getElementById('createParameterZ').value;
-
+    // if it's literially the same call every time, why??
     switch(shapeType){
         case "cube" :
             newCube(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);

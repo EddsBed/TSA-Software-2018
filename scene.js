@@ -1,3 +1,4 @@
+//this changes the scene characteristics. Called in in index.html. dimention returns the axis to set changes on (x, y, or z). values is the new value to change it to-->
 function scenePosition(dimension,value){
     scene.position[dimension]=Number(value);
 }
